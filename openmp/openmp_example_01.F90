@@ -16,4 +16,6 @@ program openmp_example_01
   print *, 'section_count', section_count
 !$omp end parallel sections
 
+  print *, 'section_count', section_count
+
 end program openmp_example_01

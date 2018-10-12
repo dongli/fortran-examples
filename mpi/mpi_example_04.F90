@@ -1,4 +1,4 @@
-program mpi_example_03
+program mpi_example_04
 
   use mpi
 
@@ -28,4 +28,4 @@ program mpi_example_03
 
   call mpi_finalize(ierr)
 
-end program mpi_example_03
+end program mpi_example_04

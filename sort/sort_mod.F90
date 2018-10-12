@@ -69,7 +69,7 @@ contains
     end if
 #endif
 
-    call qsort_integer(x, left_idx, part_idx)
+    call qsort_integer(x, left_idx, part_idx - 1)
     call qsort_integer(x, part_idx + 1, right_idx)
 
   contains
@@ -84,7 +84,7 @@ contains
       integer pivot_idx, i, j
 
       pivot_idx = left_idx
-      i = left_idx + 1
+      i = left_idx
       j = -1
       do i = left_idx + 1, right_idx
         if (x(i) < x(pivot_idx) .and. j /= -1) then
@@ -92,7 +92,7 @@ contains
           tmp = x(i); x(i) = x(j); x(j) = tmp
           ! Shift the recorded first large element.
           j = j + 1
-        else if (x(i) >= x(pivot_idx) .and. j == -1) then
+        else if (i /= pivot_idx .and. x(i) >= x(pivot_idx) .and. j == -1) then
           ! Record the first element that is larger than or equal to pivot, called first large element.
           j = i
         end if
@@ -102,7 +102,7 @@ contains
       if (j /= pivot_idx) then
         ! Swap pivot with the last small element.
         tmp = x(pivot_idx); x(pivot_idx) = x(j); x(j) = tmp
-        part_idx = j - 1
+        part_idx = j
       else
         part_idx = pivot_idx
       end if
